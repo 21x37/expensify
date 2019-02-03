@@ -17,7 +17,7 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
                         ...action.updates
                     }
                 } else {
-                    return
+                    return expense;
                 }
             });
         default:
