@@ -6,20 +6,23 @@ import numeral from 'numeral';
 
 
 
-const ExpensesSummary = ({ expenses }) => {
-    const expenseCount = expenses.length;
-    const expensesTotal = selectExpensesTotal(expenses)
+export const ExpensesSummary = ({ expenseCount, expensesTotal }) => {
+    const expenseWord = expenseCount === 1 ? 'expense' : 'expenses';
+    const formattedEpxensesTotal = numeral(expensesTotal / 100).format('$0,0.00');
+
     return (
         <div>
-            <h3>Viewing {expenseCount} expenses totalling {numeral(expensesTotal / 100).format('$0,0.00')}</h3>
+            <h1>Viewing {expenseCount} {expenseWord} totalling {formattedEpxensesTotal}</h1>
         </div>
     )
-};
+}
 
 const mapStateToProps = (state) => {
+    const visibleExpenses = selectExpenses(state.expenses, state.filters);
     return {
-        expenses: selectExpenses(state.expenses, state.filters)
-    }
+        expensesCount: visibleExpenses.length,
+        expensesTotal: selectExpensesTotal(visibleExpenses)
+    };
 };
 
 
