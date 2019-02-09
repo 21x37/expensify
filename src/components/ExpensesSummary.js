@@ -6,16 +6,16 @@ import numeral from 'numeral';
 
 
 
-export const ExpensesSummary = ({ expenseCount, expensesTotal }) => {
-    const expenseWord = expenseCount === 1 ? 'expense' : 'expenses';
+export const ExpensesSummary = ({ expensesCount, expensesTotal }) => {
+    const expenseWord = expensesCount === 1 ? 'expense' : 'expenses';
     const formattedEpxensesTotal = numeral(expensesTotal / 100).format('$0,0.00');
 
     return (
         <div>
-            <h1>Viewing {expenseCount} {expenseWord} totalling {formattedEpxensesTotal}</h1>
+            <h1>Viewing {expensesCount} {expenseWord} totalling {formattedEpxensesTotal}</h1>
         </div>
     )
-}
+};
 
 const mapStateToProps = (state) => {
     const visibleExpenses = selectExpenses(state.expenses, state.filters);
